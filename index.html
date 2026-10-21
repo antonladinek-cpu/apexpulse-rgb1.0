@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ApexPulse RGB — Cyber-Sonic. Koncept gaming slušalk z neonsko modro in vijolično podobo.">
+  <title>ApexPulse RGB | Cyber-Sonic</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { background: #05050a; color: #fff; }
+    body { margin: 0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .hero {
+      position: relative; isolation: isolate;
+      min-height: 100vh; min-height: 100svh;
+      display: flex; flex-direction: column;
+      background: #05050a;
+    }
+    .media, .overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .media { object-fit: cover; object-position: 65% center; z-index: -3; }
+    video.media { z-index: -2; }
+    .overlay {
+      z-index: -1; pointer-events: none;
+      background: linear-gradient(90deg, rgba(5,5,10,.93), rgba(5,5,10,.66) 40%, rgba(5,5,10,.12) 75%),
+                  linear-gradient(0deg, rgba(5,5,10,.8), transparent 30%);
+    }
+    header, main, footer { padding-left: 8%; padding-right: 8%; }
+    header { padding-top: 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-size: 18px; font-weight: 800; letter-spacing: .12em; }
+    .brand span { color: #50e6ff; }
+    .badge { font-size: 12px; color: #c1bdd5; border: 1px solid #ffffff30; border-radius: 30px; padding: 7px 12px; }
+    main { flex: 1; display: flex; align-items: center; padding-top: 85px; padding-bottom: 85px; }
+    .content { width: 100%; max-width: 560px; }
+    .eyebrow { color: #50e6ff; letter-spacing: .2em; font-size: 12px; font-weight: 700; }
+    h1 { margin: 20px 0 24px; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.06; letter-spacing: -.04em; }
+    h1 span { color: #8edfff; }
+    .subtitle { color: #d0cedd; font-size: clamp(1rem, 1.6vw, 1.2rem); line-height: 1.7; max-width: 460px; margin: 0 0 30px; }
+    .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 14px 23px; border: 0; border-radius: 999px; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+    .primary { background: linear-gradient(115deg, #50e6ff, #c398ff); color: #070b18; box-shadow: 0 0 30px #00cfff25; }
+    .secondary { background: #0a0c18bb; color: #fff; border: 1px solid #ffffff45; }
+    .button:hover { filter: brightness(1.12); }
+    :focus-visible { outline: 3px solid #50e6ff; outline-offset: 5px; }
+    .note { margin-top: 24px; color: #b7b3c6; font-size: 13px; line-height: 1.6; }
+    footer { padding-bottom: 25px; color: #a7a4b6; font-size: 12px; }
+    dialog { background: #10121e; color: #eee; border: 1px solid #6c6682; border-radius: 20px; padding: 28px; max-width: 480px; width: calc(100% - 36px); }
+    dialog::backdrop { background: #000b; }
+    dialog h2 { margin-top: 0; }
+    dialog p { line-height: 1.7; color: #d0cedd; }
+    [hidden] { display: none !important; }
+    @media (max-width: 650px) {
+      header, main, footer { padding-left: 24px; padding-right: 24px; }
+      header { padding-top: 22px; }
+      .brand { font-size: 14px; }
+      .badge { font-size: 10px; }
+      .media { object-position: 70% top; }
+      .overlay { background: linear-gradient(0deg, #05050a 5%, rgba(5,5,10,.94) 35%, rgba(5,5,10,.05) 82%); }
+      main { align-items: flex-end; padding-top: 330px; padding-bottom: 35px; }
+      h1 { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+      .subtitle { font-size: 1rem; }
+      .button { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <!-- Slika ostane vidna tudi, če predvajanje videa ni mogoče. -->
+    <img class="media" src="./slika.png" alt="" aria-hidden="true">
+    <video id="hero-video" class="media" autoplay loop muted playsinline preload="metadata" poster="./slika.png" aria-hidden="true">
+      <source src="./video.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <header>
+      <div class="brand">APEXPULSE <span>RGB</span></div>
+      <span class="badge">Konceptni projekt</span>
+    </header>
+    <main>
+      <div class="content">
+        <p class="eyebrow">CYBER-SONIC EDITION</p>
+        <h1>Prebijte zvočni zid <span>prihodnosti.</span></h1>
+        <p class="subtitle">Gaming estetika v novi dimenziji. Spoznajte koncept slušalk ApexPulse RGB, kjer se neonsko modra sreča z vijolično.</p>
+        <div class="actions">
+          <button class="button primary" id="about-button" type="button" hidden>O projektu</button>
+          <button class="button secondary" id="video-button" type="button" hidden>Predvajaj video</button>
+        </div>
+        <p class="note" id="video-status" role="status">Predstavitveni koncept za portfelj. Izdelek ni na voljo za nakup.</p>
+      </div>
+    </main>
+    <footer>ApexPulse RGB · AI vizualna zasnova in spletna predstavitev</footer>
+  </div>
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <h2 id="about-title">Od ideje do spletne strani</h2>
+    <p>ApexPulse RGB je konceptni projekt za portfelj. Slika je ustvarjena z Adobe Firefly, video z Lumo, predstavitev pa s HTML, CSS in JavaScriptom.</p>
+    <p>Podoba prikazuje zamišljen izdelek. Tehnične lastnosti in prodajna ponudba niso določene.</p>
+    <form method="dialog"><button class="button primary">Zapri</button></form>
+  </dialog>
+  <script>
+    const video = document.getElementById('hero-video');
+    const toggle = document.getElementById('video-button');
+    const status = document.getElementById('video-status');
+    const about = document.getElementById('about-dialog');
+    const aboutButton = document.getElementById('about-button');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    aboutButton.hidden = false;
+    toggle.hidden = false;
+    aboutButton.addEventListener('click', () => about.showModal());
+    function syncButton() {
+      toggle.textContent = video.paused ? 'Predvajaj video' : 'Ustavi video';
+    }
+    function showFallback() {
+      video.pause();
+      video.hidden = true;
+      toggle.hidden = true;
+      status.textContent = 'Prikazana je slika. Video ni na voljo — preverite, ali je video.mp4 naložen v isti mapi kot index.html.';
+    }
+    async function playVideo() {
+      try { await video.play(); }
+      catch (error) {
+        if (video.error) showFallback();
+        else if (error.name !== 'AbortError') {
+          status.textContent = 'Za zagon posnetka pritisnite »Predvajaj video«. Projekt je predstavitveni koncept.';
+        }
+      }
+      syncButton();
+    }
+    toggle.addEventListener('click', () => {
+      if (video.paused) playVideo();
+      else video.pause();
+    });
+    video.addEventListener('play', syncButton);
+    video.addEventListener('pause', syncButton);
+    video.addEventListener('playing', () => {
+      status.textContent = 'Predstavitveni koncept za portfelj. Izdelek ni na voljo za nakup.';
+    });
+    video.addEventListener('error', showFallback);
+    video.querySelector('source').addEventListener('error', showFallback);
+    if (video.error) showFallback();
+    else if (reducedMotion.matches) {
+      video.autoplay = false;
+      video.pause();
+    } else playVideo();
+    reducedMotion.addEventListener('change', event => {
+      if (event.matches) { video.autoplay = false; video.pause(); }
+    });
+  </script>
+</body>
+</html>
